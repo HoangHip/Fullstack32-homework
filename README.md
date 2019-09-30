@@ -1,1 +1,0 @@
-# Fullstack32-homework
