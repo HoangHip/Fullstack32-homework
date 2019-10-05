@@ -1,0 +1,33 @@
+#top {
+    color: #00ffff;
+    font-size: 100px;
+    font-style: italic;
+}
+
+p {
+    font-weight: 700;
+    text-align: justify;
+    text-decoration: line-through;
+    background-color: bisque;
+    background-image: url(https://www.internship.edu.vn/wp-content/uploads/anhr-1.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 10px dashed #ff0000;
+    padding: 25px 50px 10px 5px;
+    margin: 50px;
+}
+
+img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.text-red {
+    color: #ff0000;
+}
+
+img:hover {
+    width: 100px;
+}
