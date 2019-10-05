@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        var maxLength = 100;
+        $('textarea').keyup(function() {
+            var length = $(this).val().length;
+            var length = maxLength - length;
+            $('#chars').text(length);
+        });
+    </script>
+</head>
+
+<body>
+    <form>
+
+        <!-- remember to markup your forms properly using labels! -->
+        <label for="textareaChars">No more than 100 characters</label>
+
+        <textarea id="textareaChars" maxlength="100"></textarea>
+
+        <span id="chars">100</span> characters remaining
+
+    </form>
+
+
+</body>
+
+</html>
