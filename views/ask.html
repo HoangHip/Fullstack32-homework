@@ -12,34 +12,49 @@
 <body>
     <h1>Hãy hỏi cộng đồng một câu hỏi đúng/sai hoặc có không</h1>
     <form action="/add-question" method="POST">
-        <textarea cols="30" rows="10" value="" name="question" id="question" maxlength="200"></textarea>
+        <textarea cols="30" rows="10" value="" name="question" id="question"></textarea>
         <br>
         <span id="spancount">Còn 200/200 ký tự</span>
         <input type="submit">
     </form>
     <script>
-        document.getElementById('question').onkeyup = function() {
-            limitTextCount()
-        };
+        // document.getElementById('question').onkeyup = function() {
+        //     limitTextCount()
+        // };
 
-        document.getElementById('question').onkeydown = function() {
-            limitTextCount()
-        };
+        // document.getElementById('question').onkeydown = function() {
+        //     limitTextCount()
+        // };
 
-        function limitTextCount() {
-            var limitField = document.getElementById('question');
-            var limitCount = document.getElementById('spancount');
+        // function limitTextCount() {
+        //     var limitField = document.getElementById('question');
+        //     var limitCount = document.getElementById('spancount');
 
 
-            var fieldLEN = limitField.value.length;
+        //     var fieldLEN = limitField.value.length;
 
-            if (fieldLEN > 200) {
-                limitField.value = limitField.value.substring(0, 200);
+        //     if (fieldLEN > 200) {
+        //         limitField.value = limitField.value.substring(0, 200);
+        //     } else {
+        //         limitCount.innerHTML = 'Còn ' + (200 - fieldLEN) + '/200 ký tự';
+        //     }
+        // };
+
+        // chữa bài
+        const textarea = document.querySelector("textarea[name=question]");
+        const span = document.querySelector("span");
+        textarea.addEventListener("input", function() {
+            let value = textarea.value;
+            if (value.length > 200) {
+                textarea.value = value.slice(0, 200);
+                span.innerText = 'Còn 0/200 kí tự';
             } else {
-                limitCount.innerHTML = 'Còn ' + (200 - fieldLEN) + '/200 ký tự';
-            }
-        };
+                span.innerText = 'Còn ' + (200 - value.length) + '/200 ký tự';
+            };
+        });
     </script>
+
+
 </body>
 
 </html>
