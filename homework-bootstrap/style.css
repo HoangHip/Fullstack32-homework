@@ -1,0 +1,26 @@
+body {
+    background-color: #EEEEEE;
+}
+
+.logo {
+    width: 130px;
+    height: 60px;
+}
+
+.profile-pic .icon-detail {
+    top: 130px;
+    width: 100%;
+}
+
+#myModal .icon {
+    color: #bdbdbd;
+}
+
+.card .icon-header {
+    display: none;
+}
+
+.card:hover .icon-header {
+    display: block;
+    color: #ffffff;
+}
