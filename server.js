@@ -20,18 +20,28 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // });
 
 //frontend router
+app.get('/style.css', (req, res) => {
+    res.sendFile(__dirname + "/views/style.css")
+});
 
 
 app.get('/', (request, response) => {
     const fileData = fs.readFileSync("questions.json", "utf-8");
     const questionList = JSON.parse(fileData);
-    const getRndInteger = Math.floor(Math.random() * questionList.length);
-    const question = questionList[getRndInteger];
-    console.log(question)
-    const questionDetailHTML = fs.readFileSync("views/answer.html", "utf-8");
-    const htmlWithData = questionDetailHTML
-        .replace("question_content", question.content);
-    response.send(htmlWithData);
+    const randomIndex = Math.floor(Math.random() * questionList.length);
+    const randomQuestion = questionList[randomIndex];
+    if (randomQuestion) {
+
+        const questionDetailHTML = fs.readFileSync("views/answer.html", "utf-8");
+        const htmlWithData = questionDetailHTML
+            .replace("question_content", randomQuestion.content)
+            .replace("question_index", randomIndex)
+            .replace("question_index", randomIndex);
+
+        response.send(htmlWithData);
+    } else {
+        response.send("Câu hỏi không tồn tại!");
+    }
 });
 
 app.get('/ask', (request, response) => {
@@ -40,6 +50,25 @@ app.get('/ask', (request, response) => {
 
 
 // params /question/asdaksjdsadjsakdja  = /question/:questionIndex
+
+app.post('/answer/:questionIndex', (request, response) => {
+    const fileData = fs.readFileSync("questions.json", "utf-8");
+    const questionList = JSON.parse(fileData);
+    const question = questionList[request.params.questionIndex];
+
+    if (request.body.answer == "yes") {
+        question.yes += 1;
+    } else {
+        question.no += 1;
+    }
+    questionList[request.params.questionIndex] = question;
+    fs.writeFileSync("questions.json", JSON.stringify(questionList));
+    // console.log(request.body)
+    response.redirect(`/question/${request.params.questionIndex}`);
+
+})
+
+
 app.get('/question/:questionIndex', (request, response) => {
     const fileData = fs.readFileSync("questions.json", "utf-8");
     const questionList = JSON.parse(fileData);
