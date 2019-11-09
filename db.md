@@ -1,0 +1,17 @@
+- post:
+    - image: String
+    - title: String
+    - content: String
+    - created_at: Date
+    - author: String
+    - active: String
+- active:
+    - likes: Number
+    - comments: [comment]
+    - views: Number
+- user: 
+    - name: String
+    - created_at: Date
+    - username: String
+    - password: String
+    - email: String
